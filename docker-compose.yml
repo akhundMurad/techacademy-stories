@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  stories:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend
+    command: sh -c "cd src && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    tty: true
+    ports:
+      - "8000:8000"
+    env_file:
+      - .envfile
+    depends_on:
+      - pg_db
+    volumes:
+      - .:/app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  pg_db:
+    image: postgres:13-alpine
+    container_name: pg_db
+    restart: unless-stopped
+    env_file:
+      - .envfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - stories_pg_db:/var/lib/postgresql/data
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '1'
+
+volumes:
+  stories_pg_db:

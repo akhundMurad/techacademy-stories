@@ -14,3 +14,12 @@ Run dev server
   cd src/
   ./manage.py runserver
 ```
+
+## Sample envfile
+```bash
+POSTGRES_DB=dev
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=admin
+POSTGRES_HOST=pg_db
+POSTGRES_PORT=5432
+```
