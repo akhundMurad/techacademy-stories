@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-from django.db.models import QuerySet, Count, Avg, Min, Max
+from django.db.models import QuerySet
 
 from blog.models import Post
 

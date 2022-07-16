@@ -5,7 +5,7 @@ class Post(models.Model):
     title = models.CharField(
         max_length=128,
         null=False,
-        verbose_name="title"
+        verbose_name="title",
     )
     image = models.ImageField(upload_to="uploads/% Y/% m/% d/", null=True)
     data = models.TextField()
@@ -25,6 +25,11 @@ class Post(models.Model):
     @property
     def category_name(self):
         return self.category.name
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["title"])
+        ]
 
 
 class Tag(models.Model):
