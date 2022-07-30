@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% load blog_filters %}
 
 {% block title %} 
     Stories - Home 
@@ -73,22 +74,20 @@
                 <div class="col-md-6">
                     <div class="row">
                         {% for post in posts %}
-                            {% if post.image %}
-                                <div class="col-md-6 ftco-animate">
-                                    <div class="blog-entry">
-                                        <a href="{{ post.id }}" class="img d-flex align-items-end" style="background-image: url({{ post.image }});">
-                                            <div class="overlay"></div>
-                                        </a>
-                                        <div class="text pt-3">
-                                            <p class="meta d-flex"><span class="pr-3">{{ post.category }}</span><span class="ml-auto pl-3">{{ post.created_at }}</span>
-                                            </p>
-                                            <h3><a href="{{ post.id }}">{{ post.title|truncatewords:2 }}</a></h3>
-                                            <p class="mb-0"><a href="{{ post.id }}" class="btn-custom">Read More <span
-                                                class="icon-arrow_forward ml-4"></span></a></p>
-                                        </div>
+                            <div class="col-md-6 ftco-animate">
+                                <div class="blog-entry">
+                                    <a href="{{ post.id }}" class="img d-flex align-items-end" style="background-image: url({{ post.image|default_image }});">
+                                        <div class="overlay"></div>
+                                    </a>
+                                    <div class="text pt-3">
+                                        <p class="meta d-flex"><span class="pr-3">{{ post.category }}</span><span class="ml-auto pl-3">{{ post.created_at }}</span>
+                                        </p>
+                                        <h3><a href="{{ post.id }}">{{ post.title|truncatewords:2 }}</a></h3>
+                                        <p class="mb-0"><a href="{{ post.id }}" class="btn-custom">Read More <span
+                                            class="icon-arrow_forward ml-4"></span></a></p>
                                     </div>
                                 </div>
-                            {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -265,7 +264,7 @@
                         <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
                             <div class="block-18 text-center py-5 bg-light mb-4">
                                 <div class="text">
-                                    <strong class="number" data-number="200">0</strong>
+                                    <strong class="number" data-number="{% foods %}">0</strong>
                                     <span>Foods</span>
                                 </div>
                             </div>

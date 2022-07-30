@@ -9,4 +9,4 @@ from blog.models import Post
 def list_post() -> QuerySet:
     today = timezone.now() - timedelta(days=10)
 
-    return Post.objects.filter(created_at__gte=today).order_by("-created_at")
+    return Post.objects.all().order_by("-created_at")
