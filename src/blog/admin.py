@@ -11,7 +11,7 @@ class CategoryListFilter(admin.SimpleListFilter):
 
     def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
         category_ids = model_admin.get_queryset(
-            request
+            request=request
         ).values_list(
             "category_id", flat=True
         )

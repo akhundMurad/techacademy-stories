@@ -1,7 +1,8 @@
-from typing import Type
+from django.test import RequestFactory
 import pytest
 
 from django.contrib.auth import get_user_model
+
 
 from blog.models import Category, Tag, Post
 
@@ -36,3 +37,8 @@ def post(db, category, user_model) -> Post:
     )
     post.tags.add(Tag.objects.create(name="tag"))
     return post
+
+
+@pytest.fixture
+def request_factory() -> RequestFactory:
+    return RequestFactory()
