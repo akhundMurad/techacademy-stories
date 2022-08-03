@@ -3,7 +3,9 @@ from random import randint
 from django import template
 
 
-DEFAULT_IMAGE_SRC = "https://media.baamboozle.com/uploads/images/152185/1607591595_198751"
+DEFAULT_IMAGE_SRC = (
+    "https://media.baamboozle.com/uploads/images/152185/1607591595_198751"
+)
 
 
 register = template.Library()

@@ -13,23 +13,23 @@ class Post(models.Model):
         "blog.Tag",
     )
     author = models.ForeignKey(
-        "users.User",
+        "users.User", related_name="posts", on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(
+        "blog.Category",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
         related_name="posts",
-        on_delete=models.CASCADE
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-    category = models.ForeignKey("blog.Category", null=True, blank=True, on_delete=models.CASCADE)
 
     @property
     def category_name(self):
         return self.category.name
 
     class Meta:
-        indexes = [
-            models.Index(fields=["title"])
-        ]
+        indexes = [models.Index(fields=["title"])]
 
 
 class Tag(models.Model):

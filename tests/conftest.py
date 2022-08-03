@@ -31,9 +31,9 @@ def post(db, category, user_model) -> Post:
             first_name="First",
             last_name="Last",
             password="1872yiuwhd",
-            email="email@gmail.com"
+            email="email@gmail.com",
         ),
-        category=category
+        category=category,
     )
     post.tags.add(Tag.objects.create(name="tag"))
     return post
@@ -42,3 +42,13 @@ def post(db, category, user_model) -> Post:
 @pytest.fixture
 def request_factory() -> RequestFactory:
     return RequestFactory()
+
+
+@pytest.fixture
+def unused_category(db):
+    return Category.objects.create(name="unused_category")
+
+
+@pytest.fixture
+def post_model_admin() -> admin.PostModelAdmin:
+    return admin.PostModelAdmin(Post, site)
