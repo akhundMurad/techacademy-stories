@@ -16,7 +16,7 @@ def subscribe(request: HttpRequest) -> HttpResponse:
                 email=form.cleaned_data["email"],
                 category_id=form.cleaned_data["category"].id,
             )
-
+            request.session["subscribed_email"] = form.cleaned_data["email"]
             response = HttpResponseRedirect("/")
             expires = timezone.now() + timedelta(minutes=15)
             response.set_cookie(key="subscribed_to_category", value="1", expires=expires)
