@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class Subscription(models.Model):
     category = models.OneToOneField(
-        "blog.Category", on_delete=models.CASCADE, unique=True
+        "blog.Category", on_delete=models.CASCADE
     )
     emails = ArrayField(
         base_field=models.EmailField(max_length=128), size=1000, default=list
