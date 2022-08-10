@@ -7,7 +7,7 @@ class Post(models.Model):
         null=False,
         verbose_name="title",
     )
-    image = models.ImageField(upload_to="uploads/% Y/% m/% d/", null=True)
+    image = models.ImageField(upload_to="posts/%Y/%m/%d", null=True)
     data = models.TextField()
     tags = models.ManyToManyField(
         "blog.Tag",
@@ -18,8 +18,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(
         "blog.Category",
-        null=True,
-        blank=True,
         on_delete=models.CASCADE,
         related_name="posts",
     )
@@ -27,6 +25,12 @@ class Post(models.Model):
     @property
     def category_name(self):
         return self.category.name
+
+    @property
+    def image_url(self) -> str | None:
+        if self.image and hasattr(self.image, "url"):
+            return self.image.url
+        return None
 
     class Meta:
         indexes = [models.Index(fields=["title"])]
