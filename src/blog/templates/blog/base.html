@@ -42,8 +42,8 @@
                     <li class="nav-item"><a href="strories.html" class="nav-link">Stories</a></li>
                     <li class="nav-item"><a href="recipes.html" class="nav-link">Recipes</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    {% if user.username %}
-                        <li><p>{{ user.username }}</p></li>
+                    {% if username %}
+                        <li><p>{{ username }}</p></li>
                     {% else %}
                         <li><a href="{% url 'users:login' %}" class="btn btn-black px-3 px-md-4 py-3">Sign in</a></li>
                     {% endif %}

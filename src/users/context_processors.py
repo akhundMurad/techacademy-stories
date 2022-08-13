@@ -2,6 +2,6 @@ from django.http import HttpRequest
 
 
 def user(request: HttpRequest) -> str:
-    if request.user.is_authenticated:
-        return {"username": request.user.username}
+    if request.session.get("user"):
+        return {"username": request.session["user"]["userinfo"]["name"]}
     return {"username": None}
