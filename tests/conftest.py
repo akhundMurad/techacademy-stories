@@ -1,10 +1,12 @@
 from django.test import RequestFactory
 import pytest
 
+from django.contrib.sites import AdminSite
 from django.contrib.auth import get_user_model
 
 
 from blog.models import Category, Tag, Post
+from blog import admin
 
 
 @pytest.fixture
@@ -51,4 +53,4 @@ def unused_category(db):
 
 @pytest.fixture
 def post_model_admin() -> admin.PostModelAdmin:
-    return admin.PostModelAdmin(Post, site)
+    return admin.PostModelAdmin(Post, AdminSite())

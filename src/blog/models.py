@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -31,6 +32,10 @@ class Post(models.Model):
         if self.image and hasattr(self.image, "url"):
             return self.image.url
         return None
+
+    @property
+    def detail_url(self) -> str:
+        return reverse("blog:post-detail", kwargs={"pk": self.pk})
 
     class Meta:
         indexes = [models.Index(fields=["title"])]

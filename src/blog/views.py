@@ -1,18 +1,22 @@
-import logging
-
-from django.shortcuts import render
-from django.http.request import HttpRequest
-from django.http.response import HttpResponse
+from django.views import generic
+from django.db.models import QuerySet
 
 from blog.services.posts import list_post
+from blog.models import Post
+from users.permissions import LoginRequiredMixin
 
 
-logger = logging.getLogger(__name__)
+class HomeView(generic.ListView):
+    model = Post
+    context_object_name = "posts"
 
 
-def home(request: HttpRequest) -> HttpResponse:
-    if "subscribed_to_category" in request.COOKIES:
-        logger.warning("Subcribed to category.", request.COOKIES["subscribed_to_category"])
-    logger.warning(request.session.get("subscribed_email"))
-    posts = list_post()
-    return render(request, "blog/home.html", context={"posts": posts})
+class PostDetailView(generic.DetailView):
+    model = Post
+    context_object_name = "post"
+
+
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    fields = ["title", "data", "image"]
+    template_name_suffix = "_create"

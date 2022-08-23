@@ -1,7 +1,4 @@
-import site
-import pytest
-
-from blog.models import Category, Post
+from blog.models import Post
 from blog import admin
 
 

@@ -76,14 +76,14 @@
                         {% for post in posts %}
                             <div class="col-md-6 ftco-animate">
                                 <div class="blog-entry">
-                                    <a href="{{ post.id }}" class="img d-flex align-items-end" style="background-image: url({{ post.image_url|default_image }});">
+                                    <a href="{{ post.detail_url }}" class="img d-flex align-items-end" style="background-image: url({{ post.image_url|default_image }});">
                                         <div class="overlay"></div>
                                     </a>
                                     <div class="text pt-3">
                                         <p class="meta d-flex"><span class="pr-3">{{ post.category_name }}</span><span class="ml-auto pl-3">{{ post.created_at }}</span>
                                         </p>
-                                        <h3><a href="{{ post.id }}">{{ post.title|truncatewords:2 }}</a></h3>
-                                        <p class="mb-0"><a href="{{ post.id }}" class="btn-custom">Read More <span
+                                        <h3><a href="{{ post.detail_url }}">{{ post.title|truncatewords:2 }}</a></h3>
+                                        <p class="mb-0"><a href="{{ post.detail_url }}" class="btn-custom">Read More <span
                                             class="icon-arrow_forward ml-4"></span></a></p>
                                     </div>
                                 </div>
