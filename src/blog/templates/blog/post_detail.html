@@ -29,10 +29,9 @@
                     {{ post.data }}
                     <div class="tag-widget post-tag-container mb-5 mt-5">
                         <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">Life</a>
-                            <a href="#" class="tag-cloud-link">Sport</a>
-                            <a href="#" class="tag-cloud-link">Tech</a>
-                            <a href="#" class="tag-cloud-link">Travel</a>
+                            {% for post_tag in post_tags %}
+                                <a href="#" class="tag-cloud-link">{{ post_tag }}</a>
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -189,12 +188,9 @@
                     <div class="sidebar-box ftco-animate">
                         <ul class="categories">
                             <h3 class="heading mb-4">Categories</h3>
-                            <li><a href="#">Travel <span>(12)</span></a></li>
-                            <li><a href="#">Tour <span>(22)</span></a></li>
-                            <li><a href="#">Destination <span>(37)</span></a></li>
-                            <li><a href="#">Drinks <span>(42)</span></a></li>
-                            <li><a href="#">Foods <span>(14)</span></a></li>
-                            <li><a href="#">Travel <span>(140)</span></a></li>
+                            {% for category in actual_categories %}
+                                <li><a href="#">{{ category.name }} <span>({{ category.posts_count }})</span></a></li>
+                            {% endfor %}
                         </ul>
                     </div>
 
@@ -238,14 +234,9 @@
                     <div class="sidebar-box ftco-animate">
                         <h3 class="heading mb-4">Tag Cloud</h3>
                         <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">dish</a>
-                            <a href="#" class="tag-cloud-link">menu</a>
-                            <a href="#" class="tag-cloud-link">food</a>
-                            <a href="#" class="tag-cloud-link">sweet</a>
-                            <a href="#" class="tag-cloud-link">tasty</a>
-                            <a href="#" class="tag-cloud-link">delicious</a>
-                            <a href="#" class="tag-cloud-link">desserts</a>
-                            <a href="#" class="tag-cloud-link">drinks</a>
+                            {% for tag in tags_cloud %}
+                                <a href="#" class="tag-cloud-link">{{ tag }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
