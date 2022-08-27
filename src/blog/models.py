@@ -12,6 +12,7 @@ class Post(models.Model):
     data = models.TextField()
     tags = models.ManyToManyField(
         "blog.Tag",
+        through="blog.TagOfPost"
     )
     author = models.ForeignKey(
         "users.User", related_name="posts", on_delete=models.CASCADE
@@ -43,6 +44,12 @@ class Post(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=64)
+
+
+class TagOfPost(models.Model):
+    tag = models.ForeignKey("blog.Tag", on_delete=models.CASCADE)
+    post = models.ForeignKey("blog.Post", on_delete=models.CASCADE)
+    is_main = models.BooleanField(default=False)
 
 
 class Category(models.Model):
