@@ -1,8 +1,10 @@
 from typing import Any
 from django.contrib import admin
 from django.db.models import QuerySet
+from modeltranslation.admin import TranslationAdmin
 
 from blog import models
+from blog import translation
 
 
 class CategoryListFilter(admin.SimpleListFilter):
@@ -27,7 +29,7 @@ class CategoryListFilter(admin.SimpleListFilter):
         return queryset
 
 
-class PostModelAdmin(admin.ModelAdmin):
+class PostModelAdmin(TranslationAdmin):
     exclude = ["category", "tags"]
     fieldsets = (
         ("Text Fields", {"fields": ("title", "data")}),

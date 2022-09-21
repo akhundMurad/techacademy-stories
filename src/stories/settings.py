@@ -41,7 +41,7 @@ LOCAL_APPS = [
     "mails",
 ]
 
-THIRD_PARTY_APPS = ["guardian",]
+THIRD_PARTY_APPS = ["guardian", "modeltranslation"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -127,12 +127,15 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGE_CODE = "az"
-
 LANGAUGES = (
     ("en",  _("English")),
     ("ru", _("Russian")),
     ("az", _("Azerbaijani"))
 )
+
+MODELTRANSLATION_LANGUAGES = ("en", "ru", "az")
+MODELTRANSLATION_DEFAULT_LANGUAGE = "az"
+MODELTRANSLATION_TRANSLATION_REGISTRY = BASE_DIR / "translations/locale"
 
 TIME_ZONE = "Asia/Baku"
 
