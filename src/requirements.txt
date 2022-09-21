@@ -7,3 +7,4 @@ pytest-django==4.5.2
 authlib==1.0.1
 requests==2.27.1
 django-guardian==2.4.0
+redis==4.3.4

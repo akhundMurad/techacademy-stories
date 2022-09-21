@@ -9,6 +9,7 @@ class HomeView(generic.ListView):
     model = Post
     context_object_name = "posts"
 
+
 class PostDetailView(generic.DetailView):
     model = Post
     context_object_name = "post"
