@@ -1,7 +1,8 @@
 from django.http.response import Http404
 
 from mails.models import Subscription
-from blog.models import Category, Tag
+from blog.models import Category
+from tasks.tasks.mails import send_mails
 
 
 def subscribe_to_category(email: str, category_id: int) -> None:
@@ -14,6 +15,6 @@ def subscribe_to_category(email: str, category_id: int) -> None:
         subscription.emails.append(email)
         subscription.save()
 
+    recipient_list = subscription.emails
 
-def send_mail(tag: Tag) -> None:
-    print(f"Tag about tag {tag.name} was sent.")
+    send_mails.apply_async(kwargs={"emails": recipient_list})

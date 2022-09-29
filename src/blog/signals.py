@@ -2,15 +2,6 @@ from django.db.models import signals
 from django.dispatch import receiver
 
 from blog.models import Tag
-from mails.services import send_mail
-
-
-@receiver(signals.post_save, sender=Tag)
-def handle_tag_created(
-    instance: Tag, created: bool, *args, **kwargs
-) -> None:
-    if created:
-        send_mail(instance)
 
 
 @receiver(signals.post_delete, sender=Tag)

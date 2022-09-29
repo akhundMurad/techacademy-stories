@@ -41,7 +41,7 @@ LOCAL_APPS = [
     "mails",
 ]
 
-THIRD_PARTY_APPS = ["guardian",]
+THIRD_PARTY_APPS = ["guardian", "django_celery_beat"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -175,6 +175,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
 )
+
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = os.getenv('REDIS_PORT', '6379')
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_TIMEZONE = TIME_ZONE
 
 CACHES = {
     'default': {
